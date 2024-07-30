@@ -9,7 +9,7 @@
 	"routes":[
 		{"src": "/(.*)", "dest": "sateblora/wsgi.py"},
 		{ "src": "/static/(.*)", "dest": "/static/$1" },
-    		{ "src": "/(.*)", "dest": "manage.py" }
+    	{ "src": "/(.*)", "dest": "manage.py" }
 
 	]
 }
