@@ -67,7 +67,6 @@ body {
 .icon-header {
   width: 50px;
   height: 50px;
-  background-color: #ffcc65;
   border-radius: 15px;
   display: flex;
   align-items: center;
@@ -231,13 +230,22 @@ section {
   font-weight: bold;
 }
 
-.modal-header{
-  background-color: #ffe999;
+.bg-lightwarning{
+  background-color: #ffefb5;
+}
+
+.bg-darkwarning{
+  background-color: #eba434;
+}
+
+.text-darkwarning{
+  color: #eba434;
 }
 
 #exampleModalContent{
   font-size: 0.8em;
   line-height: 1.5;
+  text-align: justify;
 }
 
 div.example button:hover {
@@ -272,4 +280,77 @@ div.example::after {
 
 .card-infografis:hover {
   cursor: pointer;
+}
+
+
+
+
+body {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: auto;
+    background: linear-gradient(315deg, #fedc97 3%, #023047 25%, #219ebc 50%, #f7d5be  75%, #7c9885 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+.wave {
+    background: rgb(255 255 255 / 25%);
+    border-radius: 1000% 1000% 0 0;
+    position: fixed;
+    width: 200%;
+    height: 12em;
+    animation: wave 10s -3s linear infinite;
+    transform: translate3d(0, 0, 0);
+    opacity: 0.8;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.wave:nth-of-type(2) {
+    bottom: -1.25em;
+    animation: wave 18s linear reverse infinite;
+    opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+    bottom: -2.5em;
+    animation: wave 20s -1s reverse infinite;
+    opacity: 0.9;
+}
+
+@keyframes wave {
+    2% {
+        transform: translateX(1);
+    }
+
+    25% {
+        transform: translateX(-25%);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    75% {
+        transform: translateX(-25%);
+    }
+
+    100% {
+        transform: translateX(1);
+    }
 }
