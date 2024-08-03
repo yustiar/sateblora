@@ -22,4 +22,9 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+
+    path('load_init_pub', views.load_init_pub, name='load_init_pub'),
+    path('load_more_pub', views.load_more_pub, name='load_more_pub'),
+    path('detail_pub', views.detail_pub, name='detail_pub'),
+    path('cari_pub', views.cari_pub, name='cari_pub'),
 ]
