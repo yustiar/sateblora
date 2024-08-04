@@ -19,7 +19,7 @@ body {
 
 .tab{ 
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 0px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -61,7 +61,6 @@ body {
   color: #fff!important;
 
 }
-
 
 
 .icon-header {
@@ -248,7 +247,7 @@ section {
   text-align: justify;
 }
 
-div.example button:hover {
+.cari_publikasi:hover {
   background: #cf7f00;
 }
 
@@ -354,3 +353,5 @@ body {
         transform: translateX(1);
     }
 }
+
+

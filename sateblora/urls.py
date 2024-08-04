@@ -22,9 +22,15 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+    path('load_more_infografis', views.load_more_infografis, name='load_more_infografis'),
 
     path('load_init_pub', views.load_init_pub, name='load_init_pub'),
     path('load_more_pub', views.load_more_pub, name='load_more_pub'),
     path('detail_pub', views.detail_pub, name='detail_pub'),
     path('cari_pub', views.cari_pub, name='cari_pub'),
+
+    path('load_init_brs', views.load_init_brs, name='load_init_brs'),
+    path('load_more_brs', views.load_more_brs, name='load_more_brs'),
+    path('detail_brs', views.detail_brs, name='detail_brs'),
+    path('cari_brs', views.cari_brs, name='cari_brs'),
 ]

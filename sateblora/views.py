@@ -57,8 +57,31 @@ def index(request):
 
 	return render(request, 'index.html', context)
 
+def load_more_infografis(request):
+	offset=int(request.POST['offset'])
+	page=(offset/10)+1
+	url = 'https://webapi.bps.go.id/v1/api/list'
+	params = {
+		'model': 'infographic',
+		'lang': 'ind',
+		'domain': '3316',
+		'page':page,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+	posts=[]
+
+	res = re.get(url, params=params)
+	data = res.json()
+
+	posts = data['data'][1]
+	totalresult = data['data'][0]['total']
+	return JsonResponse(data={
+		'posts':posts,
+		'totalResult':totalresult,
+	})
 
 
+#####################################################################################################################
 def load_init_pub(request):
 	url = 'https://webapi.bps.go.id/v1/api/list'
 	params = {
@@ -140,6 +163,94 @@ def cari_pub(request):
 				posts.extend(data['data'][1])
 			else:
 				break
+	return JsonResponse(data={
+		'posts':posts,
+	})
+
+
+#####################################################################################################################
+def load_init_brs(request):
+	url = 'https://webapi.bps.go.id/v1/api/list'
+	params = {
+		'model': 'pressrelease',
+		'lang': 'ind',
+		'domain': '3316',
+		'page':1,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+
+	res = re.get(url, params=params)
+	data = res.json()
+	posts = data['data'][1]
+	totalitem = data['data'][0]
+
+	return JsonResponse(data={
+		'posts':posts,
+		'totalitem':totalitem
+	})
+
+def load_more_brs(request):
+	offset=int(request.POST['offset'])
+	page=(offset/10)+1
+	url = 'https://webapi.bps.go.id/v1/api/list'
+	params = {
+		'model': 'pressrelease',
+		'lang': 'ind',
+		'domain': '3316',
+		'page':page,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+	posts=[]
+
+	res = re.get(url, params=params)
+	data = res.json()
+
+	posts = data['data'][1]
+	totalresult = data['data'][0]['total']
+
+	return JsonResponse(data={
+		'posts':posts,
+		'totalResult':totalresult,
+	})
+
+def detail_brs(request):
+	indeksbrs=request.POST['offset']
+	url = 'https://webapi.bps.go.id/v1/api/view'
+	params = {
+		'model': 'pressrelease',
+		'lang': 'ind',
+		'domain': '3316',
+		'id':indeksbrs,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+	res = re.get(url, params=params)
+	data = res.json()
+	posts = data['data']
+	return JsonResponse(data={
+		'posts':posts,
+	})
+
+def cari_brs(request):
+	keyword=request.POST['offset']
+	posts=[]
+	if len(keyword) > 2:
+		for i in range(100):
+			url = 'https://webapi.bps.go.id/v1/api/list'
+			params = {
+				'model': 'pressrelease',
+				'lang': 'ind',
+				'domain': '3316',
+				'page':i+1,
+				'key': '481cbe5f8403e091cb7abfd4d83829a3',
+				'keyword': keyword
+			}
+			res = re.get(url, params=params)
+			data = res.json()
+			if data['data-availability'] != 'list-not-available':
+				posts.extend(data['data'][1])
+			else:
+				break
+	print(posts)
 	return JsonResponse(data={
 		'posts':posts,
 	})
