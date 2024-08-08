@@ -4,6 +4,8 @@ import pandas as pd
 import requests as re 
 from django.http import JsonResponse
 import json
+import ast
+
 
 def index(request):
 	url = 'https://webapi.bps.go.id/v1/api/list'
@@ -154,7 +156,7 @@ def cari_pub(request):
 				'lang': 'ind',
 				'domain': '3316',
 				'page':i+1,
-				'key': '481cbe5f8403e091cb7abfd4d83829a3',
+				'key': '6c0136a5ba2dc0794749c4fe5bbcffea',
 				'keyword': keyword
 			}
 			res = re.get(url, params=params)
@@ -241,7 +243,7 @@ def cari_brs(request):
 				'lang': 'ind',
 				'domain': '3316',
 				'page':i+1,
-				'key': '481cbe5f8403e091cb7abfd4d83829a3',
+				'key': '6c0136a5ba2dc0794749c4fe5bbcffea',
 				'keyword': keyword
 			}
 			res = re.get(url, params=params)
@@ -251,6 +253,157 @@ def cari_brs(request):
 			else:
 				break
 	print(posts)
+	return JsonResponse(data={
+		'posts':posts,
+	})
+
+#####################################################################################################################
+def load_init_berita(request):
+	url = 'https://webapi.bps.go.id/v1/api/list'
+	params = {
+		'model': 'news',
+		'lang': 'ind',
+		'domain': '3316',
+		'page':1,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+
+	res = re.get(url, params=params)
+	data = res.json()
+	posts = data['data'][1]
+	totalitem = data['data'][0]
+	return JsonResponse(data={
+		'posts':posts,
+		'totalitem':totalitem
+	})
+def load_more_berita(request):
+	offset=int(request.POST['offset'])
+	page=(offset/10)+1
+	url = 'https://webapi.bps.go.id/v1/api/list'
+	params = {
+		'model': 'news',
+		'lang': 'ind',
+		'domain': '3316',
+		'page':page,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+	posts=[]
+
+	res = re.get(url, params=params)
+	data = res.json()
+
+	posts = data['data'][1]
+	totalresult = data['data'][0]['total']
+	return JsonResponse(data={
+		'posts':posts,
+		'totalResult':totalresult,
+	})
+
+def detail_berita(request):
+	indeksberita=request.POST['offset']
+	url = 'https://webapi.bps.go.id/v1/api/view'
+	params = {
+		'model': 'news',
+		'lang': 'ind',
+		'domain': '3316',
+		'id':indeksberita,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+	res = re.get(url, params=params)
+	data = res.json()
+	posts = data['data']
+	return JsonResponse(data={
+		'posts':posts,
+	})
+def cari_berita(request):
+	keyword=request.POST['offset']
+	posts=[]
+	print(keyword)
+	if len(keyword) > 2:
+		for i in range(100):
+			url = 'https://webapi.bps.go.id/v1/api/list'
+			params = {
+				'model': 'news',
+				'lang': 'ind',
+				'domain': '3316',
+				'page':i+1,
+				'key': '6c0136a5ba2dc0794749c4fe5bbcffea',
+				'keyword': keyword
+			}
+			res = re.get(url, params=params)
+			data = res.json()
+			if data['data-availability'] != 'list-not-available':
+				posts.extend(data['data'][1])
+			else:
+				break
+	
+	return JsonResponse(data={
+		'posts':posts,
+	})
+
+
+#####################################################################################################################
+def load_init_data(request):
+	sosial = []
+	ekonomi = []
+	pertanian = []
+	
+	with open(r"static/json/sosial.json") as f:
+	    data1 = f.read()
+	with open(r"static/json/ekonomi.json") as f:
+	    data2 = f.read()
+	with open(r"static/json/pertanian.json") as f:
+	    data3 = f.read()
+	sosial = list(ast.literal_eval(data1))
+	ekonomi = list(ast.literal_eval(data2))
+	pertanian = list(ast.literal_eval(data3))
+
+	return JsonResponse(data={
+		'sosial':sosial,
+		'ekonomi':ekonomi,
+		'pertanian':pertanian,
+	})
+
+def load_more_data(request):
+	posts=[]
+	offset=str(request.POST['offset'])
+	# print(offset)
+	#STATICTABLE
+	for i in range(100):
+		url = 'https://webapi.bps.go.id/v1/api/list'
+		params = {
+			'model': 'statictable',
+			'lang': 'ind',
+			'domain': '3316',
+			'subject':int(offset.split("_")[1]),
+			'page':i+1,
+			'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+		}
+		res = re.get(url, params=params)
+		data = res.json()
+		if data['data-availability'] != 'list-not-available':
+			posts.extend(data['data'][1])
+		else:
+			break
+	  
+	
+	return JsonResponse(data={
+		'posts':posts,
+	})
+def detail_data(request):
+	posts=[]
+	offset=str(request.POST['offset'])
+	url = 'https://webapi.bps.go.id/v1/api/view'
+	params = {
+		'model': 'statictable',
+		'lang': 'ind',
+		'domain': '3316',
+		'id':offset,
+		'key': '6c0136a5ba2dc0794749c4fe5bbcffea'
+	}
+	res = re.get(url, params=params)
+	data = res.json()
+	posts = data['data']
 	return JsonResponse(data={
 		'posts':posts,
 	})

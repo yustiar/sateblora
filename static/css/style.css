@@ -76,54 +76,28 @@ body {
 .nav-link.active {
   color: white !important;
 }
+ .navbar {
+        background: linear-gradient(60deg, #000000, #042042);
+        background-size: 200% 200%;
+        animation: gradientShift 10s ease infinite;
+    }
 
-.splide {
-  padding: 20px 0;
-}
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
 
-// Generic Slide
-.splide__slide {
-  img {
-    display: block;
-    width: 100%;
-    border-radius: 8px;
-    transition: transform 400ms;
-    transform: scale(.9);
-    transform-origin: center center;
-  }
-}
+    .text-darkwarning {
+        color: #FFD700; /* Contoh warna lain jika ingin mengganti text-warning */
+    }
 
-// Active Slide
-.splide__slide.is-active {
-  img {
-    transform: scale(1);
-  }
-}
+    .btn-secondary {
+        background-color: transparent;
+        border: none;
+    }
 
-// Arrow Tweaks for Accessibility
-.splide .splide__arrow {
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  transform: none;
-  border-radius: unset;
-  width: 50px;
-  opacity: .9;
-  svg {
-    filter: invert(1);
-    width: 24px;
-    height: 24px;
-  }
-}
-.splide__arrow.splide__arrow--prev {
-  left: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 100%);
-}
-.splide__arrow.splide__arrow--next {
-  right: 0;
-  background: linear-gradient(270deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 100%);
-}
-
+    
 // Page CSS
 body {
   margin: 0;
@@ -353,5 +327,86 @@ body {
         transform: translateX(1);
     }
 }
+
+
+
+
+
+
+
+
+.bps-lightblue{
+  background-color: rgb(227, 246, 255)!important;
+}
+
+.bps-lightgreen{
+  background-color: rgb(227, 246, 222)!important;
+}
+
+.bps-lightorange{
+  background-color: rgb(255, 243, 222)!important;
+}
+.lightgreen{
+    background-color: rgb(204, 252, 192)!important;
+}
+.bg-white{
+  background-color: rgb(255, 255, 255);
+}
+.bg-grey{
+    background-color: #2e2d2d;
+}
+.bps-blue{
+  color: rgb(51, 149, 205)!important;
+}
+.bps-orange{
+  color: rgb(228, 145, 55)!important;
+}
+.bps-green{
+  color: rgb(117, 179, 60)!important;
+}
+
+.bordertopblue{
+  border-top: 8px solid rgb(51, 149, 205);
+}
+
+.bordertoporange{
+  border-top: 8px solid rgb(228, 145, 55);
+}
+
+.bordertopgreen{
+  border-top: 8px solid rgb(117, 179, 60);
+}
+
+.borderbotblue{
+    border-bottom: 2px solid rgb(51, 149, 205);
+}
+
+.borderbotorange{
+    border-bottom: 2px solid rgb(228, 145, 55);
+}
+
+.borderbotgreen{
+    border-bottom: 2px solid rgb(117, 179, 60);
+}
+
+.borderleftblue{
+    border-left: 5px solid rgb(227, 246, 255)!important;
+    border-bottom: 3px solid rgb(227, 246, 255)!important;
+}
+.borderleftorange{
+    border-left: 5px solid rgb(255, 243, 222)!important;
+    border-bottom: 3px solid rgb(255, 243, 222)!important;
+}
+.borderleftgreen{
+    border-left: 5px solid rgb(227, 246, 222)!important;
+    border-bottom: 3px solid rgb(227, 246, 222)!important;
+}
+
+.link-secondary{
+    color: rgb(61, 61, 61);
+}
+.btn-no-rounded {
+            border-radius: 0 !important;
+
 
 

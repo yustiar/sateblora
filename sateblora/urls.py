@@ -29,8 +29,17 @@ urlpatterns = [
     path('detail_pub', views.detail_pub, name='detail_pub'),
     path('cari_pub', views.cari_pub, name='cari_pub'),
 
+    path('load_init_data', views.load_init_data, name='load_init_data'),    
+    path('load_more_data', views.load_more_data, name='load_more_data'),
+    path('detail_data', views.detail_data, name='detail_data'),
+
     path('load_init_brs', views.load_init_brs, name='load_init_brs'),
     path('load_more_brs', views.load_more_brs, name='load_more_brs'),
     path('detail_brs', views.detail_brs, name='detail_brs'),
     path('cari_brs', views.cari_brs, name='cari_brs'),
+
+        path('load_init_berita', views.load_init_berita, name='load_init_berita'),
+    path('load_more_berita', views.load_more_berita, name='load_more_berita'),
+    path('detail_berita', views.detail_berita, name='detail_berita'),
+    path('cari_berita', views.cari_berita, name='cari_berita'),
 ]
