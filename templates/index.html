@@ -176,7 +176,7 @@
                             </div>
                             
                             {% for i,j,k,l,m,n in indikator_all %}
-                            <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="{{n}}" data-bs-placement="top" style="font-size: small;">
+                            <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content="{{n}}" data-bs-placement="top" style="font-size: small;">
                                 <div class="card-body px-2 py-1 d-flex border-bottom border-secondary">
                                     <div class="card-indicator-icon pe-3">
                                         <img src="{{m}}" style="height:70px" loading="lazy"/>
@@ -535,6 +535,13 @@ $(document).ready(function(){
     $(".splash").delay(8000).fadeOut(1000);
     $(".splash").fadeOut(1000, function(){
         $(this).remove();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl);
+        });
     });
 ////BERANDA////
     $("#pills-beranda-tab").on('click',function(){
