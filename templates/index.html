@@ -66,6 +66,7 @@
             <div class="modal-body">
                 <div id="modalPicture" class="d-flex justify-content-center">   
                     <img class="img-fluid img-responsive rounded pb-2" id="modalimage" src="" style="max-height:1000px;" loading="lazy">     
+                    <div id="modalcontentdiv"></div>
                 </div>
                     
                 <p id="exampleModalContent" class="text-justify overflow-auto mb-0"></p> 
@@ -622,7 +623,7 @@ $(document).ready(function(){
 
         $("#exampleModalLabel").text($(this).find('p').text());
         $("#exampleModalContent").text("");
-        $("#modalimage").attr("src",$(this).find('a').attr('data-url'));
+        $('#modalcontentdiv').html($(this).find('a').attr('data-url'));
         $("#exampleModalButton").hide();
     });
 
@@ -1485,5 +1486,6 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+
 
 
