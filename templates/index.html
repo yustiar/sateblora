@@ -175,8 +175,8 @@
                                 </div>
                             </div>
                             
-                            {% for i,j,k,l,m,n in indikator_all %}
-                            <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content="{{n}}" data-bs-placement="top" style="font-size: small;">
+                            {% for i,j,k,l,m,n,o in indikator_all %}
+                            <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content="{{n}}" data-bs-placement="top" data-url="{{o}}" style="font-size: small;">
                                 <div class="card-body px-2 py-1 d-flex border-bottom border-secondary">
                                     <div class="card-indicator-icon pe-3">
                                         <img src="{{m}}" style="height:70px" loading="lazy"/>
@@ -1471,3 +1471,4 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+
