@@ -177,7 +177,7 @@ https://github.com/yustiar/sateblora/blob/main/templates/index.html
                             </div>
                             
                             {% for i,j,k,l,m,n,o in indikator_all %}
-                            <a class="button_indikator" tabindex="0" role="button" data-url="{{o | safe}}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: small;">
+                            <a class="button_indikator" tabindex="0" role="button" data-url="{{o}}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: small;">
                                 <div class="card-body px-2 py-1 d-flex border-bottom border-secondary">
                                     <div class="card-indicator-icon pe-3">
                                         <img src="{{m}}" style="height:70px" loading="lazy"/>
@@ -1487,6 +1487,7 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+
 
 
 
