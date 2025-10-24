@@ -615,16 +615,16 @@ $(document).ready(function(){
     });
     
     //DETAIL INDIKATOR
-    $('body').on('click', 'div.button_indikator', function (){
-        $("#modalimage").removeClass("w-25");
-        $("#modalimage").removeClass("w-50");
-        $("#modalimage").removeClass("w-100");
-        $("#modalimage").addClass("w-100");
-
+    $('body').on('click', 'a.button_indikator', function () {
+        $("#modalimage").removeClass("w-25 w-50 w-100").addClass("w-100");
+    
         $("#exampleModalLabel").text($(this).find('p').text());
         $("#exampleModalContent").text("");
-        console.log($(this).find('a').attr('data-url'));
-        $('#modalcontentdiv').html($(this).find('a').attr('data-url'));
+        
+        const iframeHTML = $(this).attr('data-url'); // langsung ambil data-url dari <a>
+        console.log(iframeHTML);
+    
+        $('#modalcontentdiv').html(iframeHTML); // isi div dengan elemen iframe yang ada di data-url
         $("#exampleModalButton").hide();
     });
 
@@ -1487,6 +1487,7 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+
 
 
 
