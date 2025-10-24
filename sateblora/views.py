@@ -46,8 +46,9 @@ def index(request):
 	satuan_indikator = initdf['satuan']
 	icon_indikator = initdf['icon']
 	ket_indikator = initdf['keterangan']
-
-	indikator_all = zip(nama_indikator,tahun_indikator,nilai_indikator,satuan_indikator,icon_indikator,ket_indikator)
+	link_looker = initdf['linklooker']
+	
+	indikator_all = zip(nama_indikator,tahun_indikator,nilai_indikator,satuan_indikator,icon_indikator,ket_indikator,link_looker)
 
 	context = {
 		'Title' : 'SateBlora | Satu Datane Blora ',
@@ -406,4 +407,5 @@ def detail_data(request):
 	posts = data['data']
 	return JsonResponse(data={
 		'posts':posts,
+
 	})
