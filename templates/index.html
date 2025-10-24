@@ -176,7 +176,7 @@
                             </div>
                             
                             {% for i,j,k,l,m,n,o in indikator_all %}
-                            <a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content="{{n}}" data-bs-placement="top" data-url="{{o}}" style="font-size: small;">
+                            <a class="button_indikator" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content="{{n}}" data-bs-placement="top" data-url="{{o}}" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: small;">
                                 <div class="card-body px-2 py-1 d-flex border-bottom border-secondary">
                                     <div class="card-indicator-icon pe-3">
                                         <img src="{{m}}" style="height:70px" loading="lazy"/>
@@ -549,7 +549,7 @@ $(document).ready(function(){
     $("#pills-beranda-tab").on('click',function(){
         $('#header').text('Beranda');
     });
-
+    
     //DETAIL INFOGRAFIS
     $('body').on('click', 'div.card-infografis', function (){
         $("#modalimage").removeClass("w-25");
@@ -613,7 +613,21 @@ $(document).ready(function(){
         });
     });
     
+    //DETAIL INDIKATOR
+    $('body').on('click', 'div.button_indikator', function (){
+        $("#modalimage").removeClass("w-25");
+        $("#modalimage").removeClass("w-50");
+        $("#modalimage").removeClass("w-100");
+        $("#modalimage").addClass("w-100");
 
+        $("#exampleModalLabel").text($(this).find('p').text());
+        $("#exampleModalContent").text("");
+        $("#modalimage").attr("src",$(this).find('a').attr('data-url'));
+        $("#exampleModalButton").hide();
+    });
+
+    
+    
 ////PUBLIKASI////
     //INIT
     $("#pills-publikasi-tab").on('click',function(){
@@ -1471,4 +1485,5 @@ $(document).ready(function(){
 </script>
 </body>
 </html>
+
 
